@@ -4,6 +4,11 @@ nav{
     height: 80px;
 }
 
+button {
+    background-color:white;
+
+}
+
 #title{
     text-align: center;
     color: white;
