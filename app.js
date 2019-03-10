@@ -22,11 +22,9 @@
 
 
     $(document).on("click","button", function() {
-      
-      
-      
+            
         var data = $(this).attr("data");
-
+        $("h3").text("Click on a gif to make it play!");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         data + "&api_key=2HeVKnuRCphKPs1yPflNIiTkD5ELe0Oa&limit=10";
 
@@ -54,7 +52,7 @@
             gifPic.attr("data-state", "still")
             gifPic.attr("id", );
             gifPic.attr("class", "gi");
-
+            p.css("color","white")
 
             gifDiv.css("width", parseInt(results[i].images.fixed_height.width)+20);
             $("#gif"+i).css("width", parseInt(results[i].images.fixed_height.width)+20);
