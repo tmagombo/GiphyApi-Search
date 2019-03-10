@@ -1,13 +1,34 @@
-    
-    
-    $("button").on("click", function() {
+    var buttonItems = ["Basketball","Football","Dog", "Cat","Office","Funny"]
+    for(var i = 0; i < buttonItems.length; i++){
+          var button = $("<button>")
+          button.attr("id", i)
+          $("#buttonHolder").append(button);
+          $("#"+i).text(buttonItems[i])
+          $("#"+i).attr("data", buttonItems[i]+" fails")
 
+    };
+
+    $("#inputBtn").on("click", function(){
+      var newItem = $("input").val()
+      if(newItem.length!=0){
+      var newButton = $("<button>")
+      buttonItems.push(newItem);
+      newButton.attr("id", newItem)     
+      $("#buttonHolder").append(newButton);
+      $("#"+newItem).text(newItem);
+      $("#"+newItem).attr("data", newItem+" fails")
+      }
+    });
+
+
+    $(document).on("click","button", function() {
+      
       
       
         var data = $(this).attr("data");
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        data + "&api_key=2HeVKnuRCphKPs1yPflNIiTkD5ELe0Oa&limit=8";
+        data + "&api_key=2HeVKnuRCphKPs1yPflNIiTkD5ELe0Oa&limit=10";
 
       $.ajax({
         url: queryURL,
@@ -17,19 +38,14 @@
           console.log(queryURL);
 
           console.log(response);
-          // storing the data from the AJAX request in the results variable
           var results = response.data;
 
-          // Looping through each result item
           for (var i = 0; i < results.length; i++) {
 
-            // Creating and storing a div tag
             var gifDiv = $("<div>");
             gifDiv.attr("id", i)
-            // Creating a paragraph tag with the result item's rating
             var p = $("<p>").text("Rating: " + results[i].rating);
 
-            // Creating and storing an image tag
             var gifPic = $("<img>");
 
             gifPic.attr("src", results[i].images.fixed_height_still.url);
